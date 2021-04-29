@@ -19,9 +19,9 @@ const Courses = () => {
           <tr>
             <th>Course Name</th>
             <th>Points(ECTS)</th>
-            <td>
+            <th className="add-new">
               <Link to="/courses/0">Add New</Link>
-            </td>
+            </th>
           </tr>
         </thead>
         <tbody>

@@ -6,7 +6,7 @@ const Course = ({ match, history }) => {
   const [course, setCourse] = useState({
     _id: "0",
     name: "",
-    ects: 0,
+    ects: 0
   });
 
   useEffect(() => {
@@ -30,6 +30,16 @@ const Course = ({ match, history }) => {
 
   const save = () => {
     if (id === "0") {
+      if (course.name === "") {
+        alert("Please enter Course's name!");
+        return;
+      }
+
+      if (course.ects === 0) {
+        alert("Please enter Course's points(ECTS)!");
+        return;
+      }
+
       insert("courses", course, (data) => {
         if (data) return history.push("/courses");
         console.log("Error occured while trying to save your data!");
