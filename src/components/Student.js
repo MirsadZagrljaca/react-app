@@ -33,34 +33,31 @@ const Student = ({ match, history }) => {
   const save = () => {
     if (id === "0") {
       if (student.firstName === "") {
-        alert("Please enter Student's first name!");
-        return;
+        return alert("Please enter Student's first name!");
       }
 
       if (student.lastName === "") {
-        alert("Please enter Student's last name!");
-        return;
+        return alert("Please enter Student's last name!");
       }
 
-      if (student.yearOfBirth === "0") {
-        alert("Please enter Student's year of birth!");
-        return;
+      if (student.yearOfBirth === 0) {
+        return alert("Please enter Student's year of birth!");
       }
 
       if (student.address === "") {
-        alert("Please enter Student's address!");
-        return;
+        return alert("Please enter Student's address!");
       }
 
       insert("students", student, (data) => {
         if (data) return history.push("/students");
         console.log("Error occured while trying to save your data!");
       });
+    } else {
+      update("students", id, student, (data) => {
+        if (data) return history.push("/students");
+        console.log("Error occured while trying to save your data!");
+      });
     }
-    update("students", id, student, (data) => {
-      if (data) return history.push("/students");
-      console.log("Error occured while trying to save your data!");
-    });
   };
 
   const del = () => {

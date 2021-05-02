@@ -31,24 +31,23 @@ const Course = ({ match, history }) => {
   const save = () => {
     if (id === "0") {
       if (course.name === "") {
-        alert("Please enter Course's name!");
-        return;
+        return alert("Please enter Course's name!");
       }
 
       if (course.ects === 0) {
-        alert("Please enter Course's points(ECTS)!");
-        return;
+        return alert("Please enter Course's points(ECTS)!");
       }
 
       insert("courses", course, (data) => {
         if (data) return history.push("/courses");
         console.log("Error occured while trying to save your data!");
       });
+    } else {
+      update("courses", id, course, (data) => {
+        if (data) return history.push("/courses");
+        console.log("Error occured while trying to save your data!");
+      });
     }
-    update("courses", id, course, (data) => {
-      if (data) return history.push("/courses");
-      console.log("Error occured while trying to save your data!");
-    });
   };
 
   const del = () => {
